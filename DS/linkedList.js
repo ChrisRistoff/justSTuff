@@ -15,11 +15,18 @@ class LinkedList {
 
   printList () {
     let curr = this.head
+    let list = "("
 
-    while(curr) {
-      console.log(curr.data)
+    if (!this.head) return "()"
+
+    while(curr.next) {
+      // console.log(curr.data)
+      list += String(curr.data) + ", "
       curr = curr.next
     }
+
+    list += curr.data + ")"
+    return list
   }
 
   append (data) {
@@ -95,6 +102,8 @@ class LinkedList {
   }
 
   getByIndex (index) {
+
+    if (!this.head) return undefined
     let curr = this.head
 
     for (let i = 0; i < index; i++) {
