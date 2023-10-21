@@ -121,14 +121,36 @@ class LinkedList {
 
     return undefined
   }
+
+  toArray (start=0, end=this.length-1) {
+    let curr = this.head
+    const arr = []
+
+    for (let i = start; i <= end; i++) {
+      arr.push(curr.data)
+      curr = curr.next
+    }
+
+    return arr
+  }
+
+  fromArray(arr) {
+    for (const item of arr) {
+      const newNode = new Node(item)
+
+      if (!this.head) {
+        this.head = newNode
+        this.tail = newNode
+      } else {
+        this.tail.next = newNode
+        this.tail = newNode
+      }
+
+      this.length++
+    }
+
+    return this
+  }
 }
 
-const linkedList = new LinkedList()
-linkedList.append("data-1")
-linkedList.append("data1")
-linkedList.append("data2")
-
-console.log("@INDEX", linkedList.getByIndex(3))
-console.log("LEN", linkedList.getLength())
-console.log("GET BY VAL", linkedList.findByVal("data2"))
-linkedList.printList()
+module.exports = LinkedList
