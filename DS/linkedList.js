@@ -135,8 +135,8 @@ class LinkedList {
     let curr = this.head
     const arr = []
 
-    for (let i = start; i <= end; i++) {
-      arr.push(curr.data)
+    for (let i = 0; i <= end; i++) {
+      if (i >= start) arr.push(curr.data)
       curr = curr.next
     }
 
