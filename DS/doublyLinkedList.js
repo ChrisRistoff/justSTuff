@@ -73,6 +73,7 @@ class DoublyLinkedList {
         const poppedData = this.head.data
         this.tail = null
         this.head = null
+        this.length--
         return poppedData
       }
 
@@ -82,10 +83,50 @@ class DoublyLinkedList {
       newTail.next = null
       this.tail = newTail
 
+      this.length--
+
       return poppedData
     }
 
     return undefined
+  }
+
+  popLeft () {
+    if (this.head) {
+      if(this.tail === this.head) {
+        const poppedData = this.head.data
+        this.tail = null
+        this.head = null
+        this.length--
+        return poppedData
+      }
+
+      const poppedData = this.head.data
+      const newHead = this.head.next
+
+      newHead.prev = null
+      this.head = newHead
+
+      this.length--
+
+      return poppedData
+    }
+  }
+
+  getByIndex (index) {
+    if (index > this.length) return undefined
+
+    let curr = this.head
+
+    for (let i = 0; i < array.length; i++) {
+      curr = curr.next
+    }
+
+    return curr.data
+  }
+
+  findByVal () {
+
   }
 }
 
