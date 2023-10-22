@@ -114,31 +114,55 @@ class DoublyLinkedList {
   }
 
   getByIndex (index) {
-    if (index > this.length) return undefined
+    if (index >= this.length) return undefined
 
     let curr = this.head
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < index; i++) {
       curr = curr.next
     }
 
     return curr.data
   }
 
-  findByVal () {
+  findByVal (target) {
+    if (!this.head) return undefined
+    let curr = this.head
 
+    for (let i = 0; i < this.length; i++) {
+      if(curr.data === target) return [target, i]
+      curr = curr.next
+    }
+
+    return undefined
+  }
+
+  toArray (start = 0, end = this.length-1) {
+    if (!this.head) return []
+    const arr = []
+    let curr = this.head
+
+    for (let i = 0; i <= end; i++){
+      if (i >= start) arr.push(curr.data)
+      curr = curr.next
+    }
+
+    return arr
+  }
+
+  toArrayReveerse (start = this.length-1, end = 0) {
+    if (!this.head) return []
+    const arr = []
+    let curr = this.tail
+
+    for (let i = 0; i <= start; i++){
+      if (i >= end) arr.push(curr.data)
+      curr = curr.prev
+    }
+
+    return arr
   }
 }
 
-/*
-const linkedList = new DoublyLinkedList()
-linkedList.append("test1")
-linkedList.append("test2")
-linkedList.appendLeft("test")
-console.log(linkedList.head.data)
-console.log(linkedList.tail.data)
-linkedList.printList()
-linkedList.printList()
- */
 
 module.exports = DoublyLinkedList

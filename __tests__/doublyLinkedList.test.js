@@ -193,4 +193,71 @@ describe('test the LinkedList data structure', () => {
   })
 
 
+  describe('test toArray method', () => {
+    it('should return an empty array if list is empty', () => {
+      const test = new LinkedList()
+      expect(test.toArray()).toEqual([])
+    })
+    it('should return an array of the whole list when no arguments are given', () => {
+      const test = new LinkedList()
+      test.append(1)
+      test.append(2)
+      expect(test.toArray()).toEqual([1,2])
+      expect(test.getLength()).toBe(2)
+      expect(test.head.data).toBe(1)
+      expect(test.tail.data).toBe(2)
+      expect(test.tail.next).toBeNull()
+      expect(test.printList()).toBe("(1, 2)")
+    })
+    it('should return an array from start to end index when args are given', () => {
+      const test = new LinkedList()
+      test.append(1)
+      test.append(2)
+      test.append(3)
+      test.append(4)
+      test.append(5)
+      expect(test.toArray(1,3)).toEqual([2,3,4])
+      expect(test.getLength()).toBe(5)
+      expect(test.printList()).toBe("(1, 2, 3, 4, 5)")
+      expect(test.head.data).toBe(1)
+      expect(test.tail.data).toBe(5)
+      expect(test.tail.next).toBeNull()
+    })
+  })
+
+
+  describe('test toArrayReverse method', () => {
+    it('should return an empty array if list is empty', () => {
+      const test = new LinkedList()
+      expect(test.toArrayReveerse()).toEqual([])
+    })
+    it('should return an array of the whole list when no arguments are given', () => {
+      const test = new LinkedList()
+      test.append(1)
+      test.append(2)
+      expect(test.toArrayReveerse()).toEqual([2,1])
+      expect(test.getLength()).toBe(2)
+      expect(test.head.data).toBe(1)
+      expect(test.tail.data).toBe(2)
+      expect(test.tail.next).toBeNull()
+      expect(test.printList()).toBe("(1, 2)")
+    })
+    it('should return an array from start to end index when args are given', () => {
+      const test = new LinkedList()
+      test.append(1)
+      test.append(2)
+      test.append(3)
+      test.append(4)
+      test.append(5)
+      expect(test.toArrayReveerse(3,1)).toEqual([4,3,2])
+      expect(test.getLength()).toBe(5)
+      expect(test.printList()).toBe("(1, 2, 3, 4, 5)")
+      expect(test.head.data).toBe(1)
+      expect(test.tail.data).toBe(5)
+      expect(test.tail.next).toBeNull()
+    })
+  })
+
+
+
 })
