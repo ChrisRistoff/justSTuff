@@ -160,6 +160,24 @@ class LinkedList {
 
     return this
   }
+
+  reverse () {
+    let curr = this.head
+    let prev = null
+
+    for (let i = 0; i < this.length; i++) {
+      let next = curr.next
+      curr.next = prev
+      prev = curr
+      curr = next
+    }
+
+    let temp = this.head
+    this.head = this.tail
+    this.tail = temp
+
+    return this
+  }
 }
 
 module.exports = LinkedList

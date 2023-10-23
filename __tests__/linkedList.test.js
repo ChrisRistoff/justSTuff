@@ -190,4 +190,17 @@ describe('test the LinkedList data structure', () => {
       expect(test.getLength()).toBe(4)
     })
   })
+
+  describe('test reverse method', () => {
+    it('should return a reversed list', () => {
+      const test = new LinkedList()
+      test.append(1)
+      test.append(2)
+      test.append(3)
+      test.reverse()
+      expect(test.printList()).toBe("(3, 2, 1)")
+      expect(test.head.data).toBe(3)
+      expect(test.tail.data).toBe(1)
+    })
+  })
 })
