@@ -6,6 +6,7 @@ class Node {
 }
 
 
+
 class LinkedList {
   constructor () {
     this.head = null
@@ -179,5 +180,12 @@ class LinkedList {
     return this
   }
 }
+
+const list = new LinkedList()
+list.append("item");
+list.append("item2");
+
+console.log(list.head);
+
 
 module.exports = LinkedList
