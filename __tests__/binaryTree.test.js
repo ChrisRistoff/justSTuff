@@ -1,4 +1,4 @@
-const BinaryTree = require("../data-structures/binaryTree")
+const BinaryTree = require("../DS/binaryTree")
 
 describe('test BinaryTree', () => {
 
@@ -42,5 +42,31 @@ describe('test BinaryTree', () => {
       expect(tree.search(8)).toBe(false)
       expect(tree.search(21)).toBe(false)
     })
+  })
+
+  describe('test traverseReverse method', () => {
+    it('should return an array of the tree in reverse order', () => {
+      const tree = BinaryTree()
+      expect(tree.traverseReverse()).toEqual([])
+      tree.insert(5)
+      tree.insert(15)
+      tree.insert(6)
+      tree.insert(1)
+      expect(tree.traverseReverse()).toEqual([15,6,5,1])
+    })
+  })
+
+  describe('test deleteNode method', () => {
+    it('should remove the node from the tree', () => {
+      const tree = BinaryTree()
+      tree.insert(5)
+      tree.insert(15)
+      tree.insert(6)
+      tree.insert(1)
+      expect(tree.traverseReverse()).toEqual([15,6,5,1])
+      tree.deleteNode(15)
+      expect(tree.traverseReverse()).toEqual([6,5,1])
+    })
+
   })
 })

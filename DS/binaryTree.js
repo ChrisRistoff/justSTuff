@@ -15,7 +15,9 @@ function BinaryTree() {
   tree.insert = insert
   tree._insert = _insert
   tree.traverse = traverse
+  tree.traverseReverse = traverseReverse
   tree.search = search
+  tree.deleteNode = deleteNode
 
   return tree;
 }
@@ -55,6 +57,50 @@ function traverse(node = this.root, arr = []) {
   }
 
   return arr;
+}
+
+function traverseReverse(node = this.root, arr = []) {
+  if (node !== null) {
+    traverseReverse(node.right, arr)
+    arr.push(node.val)
+    traverseReverse(node.left, arr)
+  }
+
+  return arr;
+}
+
+function deleteNode (value, root = this.root) {
+  if (root === null) return root;
+
+  if (value < root.val) {
+    root.left = deleteNode(value, root.left)
+  } else if (value > root.val) {
+    root.right = deleteNode(value, root.right)
+  }
+
+  else {
+    if (root.left === null) {
+      let temp = root.right
+      root = null
+      return temp;
+    }
+
+    else if (root.right === null) {
+      let temp = root.left
+      root = null
+      return temp;
+    }
+
+    let temp = root.right
+
+    while (temp.left !== null) {
+      temp = temp.left
+    }
+    root.val = temp.val
+    root.right = deleteNode(temp.val, root.right)
+  }
+
+  return root;
 }
 
 function search(value, node = this.root) {
