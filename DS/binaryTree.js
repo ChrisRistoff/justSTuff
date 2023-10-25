@@ -1,81 +1,70 @@
-class TreeNode {
-  constructor (val) {
-    this.val = val
-    this.left = null
-    this.right = null
+function TreeNode(value) {
+  const node = {}
+  node.val = value
+  node.left = null
+  node.right = null
+
+  return node
+}
+
+function BinaryTree() {
+  const tree = {}
+
+  tree.root = null
+
+  tree.insert = insert
+  tree._insert = _insert
+  tree.traverse = traverse
+  tree.search = search
+
+  return tree;
+}
+
+function insert(value) {
+  const newNode = TreeNode(value)
+
+  if (this.root === null) {
+    this.root = newNode
+  } else {
+    this._insert(this.root, newNode)
+  }
+
+}
+
+function _insert(node, newNode) {
+  if (node.val > newNode.val) {
+    if (node.left !== null) {
+      this._insert(node.left, newNode)
+    } else {
+      node.left = newNode
+    }
+  } else {
+    if (node.right !== null) {
+      this._insert(node.right, newNode)
+    } else {
+      node.right = newNode
+    }
   }
 }
 
-
-class BinaryTree {
-  constructor () {
-    this.root = null
+function traverse(node = this.root, arr = []) {
+  if (node !== null) {
+    traverse(node.left, arr)
+    arr.push(node.val)
+    traverse(node.right, arr)
   }
 
-  insert (val) {
-    const newNode = new TreeNode(val)
+  return arr;
+}
 
-    if(this.root === null) {
-      this.root = newNode
-    } else {
-      this._insert(this.root, newNode)
-    }
-  }
-
-  traverse (node = this.root, arr = []) {
-    if (node !== null) {
-      this.traverse(node.left, arr)
-      arr.push(node.val)
-      this.traverse(node.right, arr)
-    }
-
-    return arr;
-  }
-
-  search (target, node = this.root) {
-    if (node === null) return false;
-
-    if (node.val === target) return true;
-
-    if (node.val > target) {
-      return this.search(target, node.left)
-    } else {
-      return this.search(target, node.right)
-    }
-  }
-
-  _insert (node, newNode) {
-    if (newNode.val < node.val) {
-
-      if (node.left === null) {
-        node.left = newNode
-      } else {
-        this._insert(node.left, newNode)
-      }
-    // if newNode.val > node.val
-    } else {
-      if (node.right === null) {
-        node.right = newNode
-      } else {
-        this._insert(node.right, newNode)
-      }
-    }
-
+function search(value, node = this.root) {
+  if (node === null) return false
+  if (node.val === value) return true
+  if (node.val > value) {
+    return search(value, node.left)
+  } else {
+    return search(value, node.right)
   }
 }
 
-const tree = new BinaryTree()
-tree.insert(10)
-tree.insert(5)
-tree.insert(15)
-tree.insert(12)
-tree.insert(7)
-tree.insert(23)
-tree.insert(29)
-tree.insert(6)
-tree.insert(4)
-tree.insert(21)
-tree.insert(17)
-
-
-console.log(tree.search(123123))
+module.exports = BinaryTree
