@@ -71,38 +71,66 @@ export class LinkedList implements ListType {
   }
 
   pop() {
-    const poppedVal = this.tail?.data
-    let curr = this.head
-    this.length--
+    if(this.tail) {
+      const poppedVal = this.tail.data
+      let curr = this.head
+      this.length--
 
-    for (let i = 1; i < this.length; i++) {
-      curr = curr!.next
+      for (let i = 1; i < this.length; i++) {
+        curr = curr!.next
+      }
+
+      curr!.next = null
+      this.tail = curr
+
+      return poppedVal
     }
 
-    curr!.next = null
-    this.tail = curr
-
-    return poppedVal
+    return undefined;
   }
 
-  popLeft() {}
+  popLeft() {
+    if (this.head) {
+      const poppedVal = this.head.data
 
-  findByVal () {}
+      this.head = this.head.next
+      this.length--
 
-  getByIndex() {}
+      return poppedVal
+    }
+
+    return undefined;
+  }
+
+  findByVal (value: string | number) {
+    if (this.head) {
+      let curr = this.head
+      let index = 0
+
+      while (curr) {
+        if (curr.data === value) return index
+        index++
+        curr = curr.next!
+      }
+    }
+
+    return undefined
+  }
+
+  getByIndex(index: number) {
+    if(!this.head) return undefined;
+
+    let curr = this.head
+
+    for (let i = 0; i < index; i++) {
+      curr = curr.next!
+    }
+
+    if(curr) return curr.data;
+    return undefined;
+  }
 
   toArray() {}
 
   fromArray() {}
 }
-
-/*
-const list = new LinkedList()
-list.append("item1")
-list.append("item2")
-list.append("itemtopop")
-
-console.log(list.printList());
-console.log(list.pop());
-console.log(list.printList());
-*/

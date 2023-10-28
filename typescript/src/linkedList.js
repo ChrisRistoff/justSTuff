@@ -58,31 +58,53 @@ class LinkedList {
         return this;
     }
     pop() {
-        var _a;
-        const poppedVal = (_a = this.tail) === null || _a === void 0 ? void 0 : _a.data;
+        if (this.tail) {
+            const poppedVal = this.tail.data;
+            let curr = this.head;
+            this.length--;
+            for (let i = 1; i < this.length; i++) {
+                curr = curr.next;
+            }
+            curr.next = null;
+            this.tail = curr;
+            return poppedVal;
+        }
+        return undefined;
+    }
+    popLeft() {
+        if (this.head) {
+            const poppedVal = this.head.data;
+            this.head = this.head.next;
+            this.length--;
+            return poppedVal;
+        }
+        return undefined;
+    }
+    findByVal(value) {
+        if (this.head) {
+            let curr = this.head;
+            let index = 0;
+            while (curr) {
+                if (curr.data === value)
+                    return index;
+                index++;
+                curr = curr.next;
+            }
+        }
+        return undefined;
+    }
+    getByIndex(index) {
+        if (!this.head)
+            return undefined;
         let curr = this.head;
-        this.length--;
-        for (let i = 1; i < this.length; i++) {
+        for (let i = 0; i < index; i++) {
             curr = curr.next;
         }
-        curr.next = null;
-        this.tail = curr;
-        return poppedVal;
+        if (curr)
+            return curr.data;
+        return undefined;
     }
-    popLeft() { }
-    findByVal() { }
-    getByIndex() { }
     toArray() { }
     fromArray() { }
 }
 exports.LinkedList = LinkedList;
-/*
-const list = new LinkedList()
-list.append("item1")
-list.append("item2")
-list.append("itemtopop")
-
-console.log(list.printList());
-console.log(list.pop());
-console.log(list.printList());
-*/
