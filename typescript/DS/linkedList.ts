@@ -53,12 +53,28 @@ export class LinkedList implements ListType {
 
     return this
   }
+
+  appendLeft (data: string | number) {
+    const newNode = new ListNode(data)
+
+    if (!this.tail) {
+      this.head = newNode
+      this.tail = newNode
+      this.length++
+    } else {
+      newNode.next = this.head
+      this.head = newNode
+      this.length++
+    }
+
+    return this;
+  }
+
+  pop() {}
+  popLeft() {}
+  findByVal () {}
+  getByIndex() {}
+  toArray() {}
+  fromArray() {}
 }
 
-const newList = new LinkedList()
-
-newList.append("item")
-newList.append("item")
-newList.append("item")
-console.log(newList);
-console.log(newList.printList());

@@ -43,11 +43,26 @@ class LinkedList {
         }
         return this;
     }
+    appendLeft(data) {
+        const newNode = new ListNode(data);
+        if (!this.tail) {
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+        }
+        else {
+            newNode.next = this.head;
+            this.head = newNode;
+            this.length++;
+        }
+        return this;
+    }
 }
 exports.LinkedList = LinkedList;
 const newList = new LinkedList();
-newList.append("item");
-newList.append("item");
-newList.append("item");
+newList.append("item2");
+newList.append("item3");
+newList.append("item4");
+newList.appendLeft("item1");
 console.log(newList);
 console.log(newList.printList());
