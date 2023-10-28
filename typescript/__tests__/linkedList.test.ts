@@ -132,5 +132,41 @@ describe('test the LinkedList data structure', () => {
     })
   })
 
+  describe('test toArray method', () => {
+    it('should return an empty array if list is empty', () => {
+      const test = new LinkedList()
+      expect(test.toArray()).toEqual([])
+    })
+    it('should return an array of the whole list when no arguments are given', () => {
+      const test = new LinkedList()
+      test.append(1)
+      test.append(2)
+      expect(test.toArray()).toEqual([1,2])
+      expect(test.head?.data).toBe(1)
+      expect(test.tail?.data).toBe(2)
+      expect(test.tail?.next).toBeNull()
+    })
+  })
+
+  describe('test fromArray method', () => {
+    it('should return an empty linked list if given an empty array', () => {
+      const test = new LinkedList()
+      const arr: never[] = []
+      test.fromArray(arr)
+      expect(test.printList()).toBe("[]")
+      expect(test.head).toBeNull()
+      expect(test.tail).toBeNull()
+    })
+    it('should add items from an array to a linked list similar to append', () => {
+      const test = new LinkedList()
+      const arr = [1,2,3,4]
+      test.fromArray(arr)
+      expect(test.printList()).toBe("[1, 2, 3, 4]")
+      expect(test.head?.data).toBe(1)
+      expect(test.tail?.data).toBe(4)
+      expect(test.tail?.next).toBeNull()
+    })
+  })
+
 
 })
