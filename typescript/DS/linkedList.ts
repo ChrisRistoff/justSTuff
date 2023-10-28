@@ -70,11 +70,39 @@ export class LinkedList implements ListType {
     return this;
   }
 
-  pop() {}
+  pop() {
+    const poppedVal = this.tail?.data
+    let curr = this.head
+    this.length--
+
+    for (let i = 1; i < this.length; i++) {
+      curr = curr!.next
+    }
+
+    curr!.next = null
+    this.tail = curr
+
+    return poppedVal
+  }
+
   popLeft() {}
+
   findByVal () {}
+
   getByIndex() {}
+
   toArray() {}
+
   fromArray() {}
 }
 
+/*
+const list = new LinkedList()
+list.append("item1")
+list.append("item2")
+list.append("itemtopop")
+
+console.log(list.printList());
+console.log(list.pop());
+console.log(list.printList());
+*/

@@ -57,12 +57,32 @@ class LinkedList {
         }
         return this;
     }
+    pop() {
+        var _a;
+        const poppedVal = (_a = this.tail) === null || _a === void 0 ? void 0 : _a.data;
+        let curr = this.head;
+        this.length--;
+        for (let i = 1; i < this.length; i++) {
+            curr = curr.next;
+        }
+        curr.next = null;
+        this.tail = curr;
+        return poppedVal;
+    }
+    popLeft() { }
+    findByVal() { }
+    getByIndex() { }
+    toArray() { }
+    fromArray() { }
 }
 exports.LinkedList = LinkedList;
-const newList = new LinkedList();
-newList.append("item2");
-newList.append("item3");
-newList.append("item4");
-newList.appendLeft("item1");
-console.log(newList);
-console.log(newList.printList());
+/*
+const list = new LinkedList()
+list.append("item1")
+list.append("item2")
+list.append("itemtopop")
+
+console.log(list.printList());
+console.log(list.pop());
+console.log(list.printList());
+*/
