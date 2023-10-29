@@ -6,13 +6,13 @@ export class newSet implements setType {
   maxSize: number
 
   constructor (...args: any) {
-    this.maxSize = 20
+    this.maxSize = 10
     this.bucket = new Array(this.maxSize)
     this.size = 0
 
   if (args) {
     for (let arg of args) {
-      if (typeof arg === "object") {
+      if (typeof arg === "object" || typeof arg === "string") {
         for (let item of arg) {
           this.add(item)
         }
@@ -24,16 +24,30 @@ export class newSet implements setType {
 
   }
 
+  _resize () {
+    this.maxSize *= 2
+    this.size = 0
+
+    const oldBucket = this.bucket
+
+    this.bucket = new Array(this.maxSize).fill(null)
+
+    for (let i = 0; i < oldBucket.length; i++) {
+      this.add(oldBucket[i])
+    }
+
+    return this
+  }
+
   _hash (value: any) {
     value = String(value)
     let hash = 0
 
-    for (const i in value) {
+    for (let i = 0; i < value.length; i++) {
       hash = (hash << 5) + value.charCodeAt(i)
       hash = hash & hash
       hash = Math.abs(hash)
     }
-
     hash = hash % this.maxSize
 
     return hash
@@ -47,6 +61,7 @@ export class newSet implements setType {
   }
 
   add (value: any) {
+    if (this.size === this.maxSize) this._resize()
     const index = this._hash(value)
 
     if (!this.bucket[index]) {
