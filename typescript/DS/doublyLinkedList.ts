@@ -128,12 +128,53 @@ export class DoublyLinkedList implements DoublyListType {
   }
 
   getByIndex (index: number) {
+    const length = this.length - 1
+    if(length < index) return undefined
+    let curr = this.head
+
+    for (let i = 1; i < length; i++) {
+      curr = curr!.next
+    }
+
+    return curr!.data
   }
 
   toArray () {
+    const length = this.length
+    const arr: any[] = []
+    if (length < 1) return arr
+
+    let curr = this.head
+
+    for (let i = 0; i < length; i++) {
+      arr.push(curr!.data)
+      curr = curr!.next
+    }
+
+    return arr
   }
 
-  fromArray (array: []) {
+  fromArray (array: any[]) {
+    if (array.length === 0) return
+    let start = 0
+    if(!this.tail) {
+      const newNode = new ListNode(array[start])
+
+      this.head = newNode
+      this.tail = newNode
+      this.length++
+      start = 1
+    }
+
+    for (let i = start; i < array.length; i++) {
+      const newNode = new ListNode(array[i])
+
+      this.tail.next = newNode
+      this.tail = newNode
+      this.length++
+    }
+
+    return this
   }
 
   reverse () {

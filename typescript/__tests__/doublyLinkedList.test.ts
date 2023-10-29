@@ -225,4 +225,25 @@ describe('test the LinkedList data structure', () => {
       expect(test.printList()).toBe("[1, 2]")
     })
   })
+
+  describe('test fromArray method', () => {
+    it('should return an empty linked list if given an empty array', () => {
+      const test = new DoublyLinkedList()
+      const arr: never[] = []
+      test.fromArray(arr)
+      expect(test.printList()).toBe("[]")
+      expect(test.head).toBeNull()
+      expect(test.tail).toBeNull()
+    })
+    it('should add items from an array to a linked list similar to append', () => {
+      const test = new DoublyLinkedList()
+      const arr = [1,2,3,4]
+      test.fromArray(arr)
+      expect(test.printList()).toBe("[1, 2, 3, 4]")
+      expect(test.head?.data).toBe(1)
+      expect(test.tail?.data).toBe(4)
+      expect(test.tail?.next).toBeNull()
+    })
+  })
+
 })

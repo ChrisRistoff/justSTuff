@@ -103,8 +103,26 @@ class DoublyLinkedList {
         return undefined;
     }
     getByIndex(index) {
+        const length = this.length - 1;
+        if (length < index)
+            return undefined;
+        let curr = this.head;
+        for (let i = 1; i < length; i++) {
+            curr = curr.next;
+        }
+        return curr.data;
     }
     toArray() {
+        const length = this.length;
+        const arr = [];
+        if (length < 1)
+            return arr;
+        let curr = this.head;
+        for (let i = 0; i < length; i++) {
+            arr.push(curr.data);
+            curr = curr.next;
+        }
+        return arr;
     }
     fromArray(array) {
     }
