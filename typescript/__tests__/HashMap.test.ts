@@ -110,7 +110,7 @@ describe('test hashMap', () => {
       })
     })
 
-    describe('test size method', () => {
+    describe('test size prop', () => {
       it('should return the size of the map', () => {
         const map = new HashMap()
         map.set(1,2)
