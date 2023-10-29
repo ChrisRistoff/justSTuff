@@ -33,6 +33,8 @@ class HashMap {
     delete(key) {
         const index = this._hash(key);
         this.bucket[index] = undefined;
+        this.size--;
+        return this;
     }
     clear() {
         for (let i in this.bucket) {
@@ -55,10 +57,28 @@ class HashMap {
         return this;
     }
     entries() {
+        const arr = [];
+        for (let i = 0; i < this.bucket.length; i++) {
+            if (this.bucket[i])
+                arr.push(this.bucket[i]);
+        }
+        return arr;
     }
     keys() {
+        const arr = [];
+        for (let i = 0; i < this.bucket.length; i++) {
+            if (this.bucket[i])
+                arr.push(this.bucket[i][0]);
+        }
+        return arr;
     }
     values() {
+        const arr = [];
+        for (let i = 0; i < this.bucket.length; i++) {
+            if (this.bucket[i])
+                arr.push(this.bucket[i][1]);
+        }
+        return arr;
     }
 }
 exports.HashMap = HashMap;
