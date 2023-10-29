@@ -175,11 +175,11 @@ describe('test the LinkedList data structure', () => {
       expect(test.printList()).toBe("[1, 2]")
 
     })
-    it('should return the value and its index in an array when it is found', () => {
+    it('should return the index when the value is found', () => {
       const test = new DoublyLinkedList()
       test.append(1)
       test.append(2)
-      expect(test.findByVal(2)).toEqual([2, 1])
+      expect(test.findByVal(2)).toEqual(1)
       expect(test.head?.data).toBe(1)
       expect(test.tail?.data).toBe(2)
       expect(test.tail?.next).toBeNull()

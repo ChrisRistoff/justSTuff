@@ -92,18 +92,48 @@ export class DoublyLinkedList implements DoublyListType {
   }
 
   popLeft () {
+    let poppedVal: string | number | undefined
+
+    if(this.length === 1) {
+      poppedVal = this.head?.data
+
+      this.head = null
+      this.tail = null
+      this.length--
+    }
+
+    if(this.head) {
+      poppedVal = this.head.data
+
+      this.head = this.head.next
+      this.head!.prev = null
+      this.length--
+    }
+
+    return poppedVal
   }
 
-  findByVal () {
+  findByVal (value: string | number) {
+    let curr: ListNode
+
+    if(this.head) {
+      curr = this.head
+      for (let i = 0; i < this.length; i++) {
+        if(curr.data === value) return i
+        curr = curr.next!
+      }
+    }
+
+    return undefined
   }
 
-  getByIndex () {
+  getByIndex (index: number) {
   }
 
   toArray () {
   }
 
-  fromArray () {
+  fromArray (array: []) {
   }
 
   reverse () {
@@ -112,9 +142,3 @@ export class DoublyLinkedList implements DoublyListType {
   toArrayReverse () {
   }
 }
-
-const list = new DoublyLinkedList()
-list.append(3)
-
-console.log(list.pop())
-console.log(list.printList())

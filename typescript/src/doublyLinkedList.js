@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DoublyLinkedList = void 0;
 class ListNode {
     constructor(data) {
         this.data = data;
@@ -73,19 +74,43 @@ class DoublyLinkedList {
         return poppedVal;
     }
     popLeft() {
+        var _a;
+        let poppedVal;
+        if (this.length === 1) {
+            poppedVal = (_a = this.head) === null || _a === void 0 ? void 0 : _a.data;
+            this.head = null;
+            this.tail = null;
+            this.length--;
+        }
+        if (this.head) {
+            poppedVal = this.head.data;
+            this.head = this.head.next;
+            this.head.prev = null;
+            this.length--;
+        }
+        return poppedVal;
     }
-    findByVal() {
+    findByVal(value) {
+        let curr;
+        if (this.head) {
+            curr = this.head;
+            for (let i = 0; i < this.length; i++) {
+                if (curr.data === value)
+                    return i;
+                curr = curr.next;
+            }
+        }
+        return undefined;
     }
-    getByIndex() {
+    getByIndex(index) {
     }
     toArray() {
     }
-    fromArray() {
+    fromArray(array) {
     }
     reverse() {
     }
+    toArrayReverse() {
+    }
 }
-const list = new DoublyLinkedList();
-list.append(3);
-console.log(list.pop());
-console.log(list.printList());
+exports.DoublyLinkedList = DoublyLinkedList;
