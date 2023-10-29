@@ -21,4 +21,5 @@ export type DoublyListType = {
   toArray: Function
   fromArray: Function
   reverse: Function
+  toArrayReverse: Function
 }

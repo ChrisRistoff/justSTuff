@@ -108,6 +108,9 @@ export class DoublyLinkedList implements DoublyListType {
 
   reverse () {
   }
+
+  toArrayReverse () {
+  }
 }
 
 const list = new DoublyLinkedList()

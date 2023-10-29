@@ -39,6 +39,32 @@ describe('test the LinkedList data structure', () => {
     })
   })
 
+  describe('test appendLeft method', () => {
+    it('should append an item to an empty list', () => {
+      const test = new DoublyLinkedList()
+      test.appendLeft(1)
+      expect(test.printList()).toBe("[1]")
+      expect(test.head?.data).toBe(1)
+      expect(test.tail?.data).toBe(1)
+      expect(test.tail?.next).toBeNull()
+      expect(test.length).toBe(1)
+
+    })
+    it('should append items to the beginning of the list when it is not empty', () => {
+      const test = new DoublyLinkedList()
+      test.append(2)
+      test.append(3)
+      expect(test.printList()).toBe("[2, 3]")
+      test.appendLeft(1)
+      expect(test.printList()).toBe("[1, 2, 3]")
+      expect(test.head?.data).toBe(1)
+      expect(test.tail?.data).toBe(3)
+      expect(test.tail?.next).toBeNull()
+      expect(test.length).toBe(3)
+    })
+  })
+
+
   describe('test pop method', () => {
 
     it('should return undefined when popping an empty list', () => {
@@ -75,5 +101,128 @@ describe('test the LinkedList data structure', () => {
     })
   })
 
+  describe('test popLeft method', () => {
 
+    it('should return undefined for an empty list', () => {
+      const test = new DoublyLinkedList()
+      const popped = test.popLeft()
+      expect(popped).toBe(undefined)
+      expect(test.printList()).toBe("[]")
+      expect(test.head).toBeNull()
+      expect(test.tail).toBeNull()
+    })
+
+    it('should remove first item of the list and return it', () => {
+      const test = new DoublyLinkedList()
+      test.append(1)
+      test.append(2)
+      test.append(3)
+      const poppedLeft = test.popLeft()
+      expect(poppedLeft).toBe(1)
+      expect(test.printList()).toBe("[2, 3]")
+      expect(test.head?.data).toBe(2)
+      expect(test.tail?.next).toBeNull()
+    })
+
+    it('should work for a list with a signle item', () => {
+      const test = new DoublyLinkedList()
+      test.append(1)
+      const popped = test.popLeft()
+      expect(popped).toBe(1)
+      expect(test.printList()).toBe("[]")
+      expect(test.head).toBeNull()
+      expect(test.tail).toBeNull()
+    })
+  })
+
+
+  describe('test getByIndex method', () => {
+    it('should returned undefined when the list is empty', () => {
+      const test = new DoublyLinkedList()
+      expect(test.getByIndex(1)).toBe(undefined)
+    })
+    it('should return the value when index is given', () => {
+      const test = new DoublyLinkedList()
+      test.append(1)
+      test.append(2)
+      test.append(3)
+      expect(test.getByIndex(1)).toBe(2)
+      expect(test.tail?.next).toBeNull()
+    })
+    it('shoulde return undefined when index is bigger than length', () => {
+      const test = new DoublyLinkedList()
+      test.append(1)
+      expect(test.getByIndex(1)).toBe(undefined)
+      expect(test.tail?.next).toBeNull()
+    })
+  })
+
+
+  describe('test findByVal method', () => {
+    it('should return undefined when list is empty', () => {
+      const test = new DoublyLinkedList()
+      expect(test.findByVal(2)).toBe(undefined)
+    })
+    it('should return undefined when value is not in the list', () => {
+      const test = new DoublyLinkedList()
+      test.append(1)
+      test.append(2)
+      expect(test.findByVal(3)).toBe(undefined)
+      expect(test.head?.data).toBe(1)
+      expect(test.tail?.data).toBe(2)
+      expect(test.tail?.next).toBeNull()
+      expect(test.length).toBe(2)
+      expect(test.printList()).toBe("[1, 2]")
+
+    })
+    it('should return the value and its index in an array when it is found', () => {
+      const test = new DoublyLinkedList()
+      test.append(1)
+      test.append(2)
+      expect(test.findByVal(2)).toEqual([2, 1])
+      expect(test.head?.data).toBe(1)
+      expect(test.tail?.data).toBe(2)
+      expect(test.tail?.next).toBeNull()
+      expect(test.length).toBe(2)
+      expect(test.printList()).toBe("[1, 2]")
+    })
+  })
+
+
+  describe('test toArray method', () => {
+    it('should return an empty array if list is empty', () => {
+      const test = new DoublyLinkedList()
+      expect(test.toArray()).toEqual([])
+    })
+    it('should return an array of the whole list when no arguments are given', () => {
+      const test = new DoublyLinkedList()
+      test.append(1)
+      test.append(2)
+      expect(test.toArray()).toEqual([1,2])
+      expect(test.length).toBe(2)
+      expect(test.head?.data).toBe(1)
+      expect(test.tail?.data).toBe(2)
+      expect(test.tail?.next).toBeNull()
+      expect(test.printList()).toBe("[1, 2]")
+    })
+  })
+
+
+  describe('test toArrayReverse method', () => {
+    it('should return an empty array if list is empty', () => {
+      const test = new DoublyLinkedList()
+      expect(test.toArrayReverse()).toEqual([])
+    })
+    it('should return an array of the whole list when no arguments are given', () => {
+      const test = new DoublyLinkedList()
+      test.append(1)
+      test.append(2)
+      expect(test.toArrayReverse()).toEqual([2,1])
+      expect(test.length).toBe(2)
+      expect(test.head?.data).toBe(1)
+      expect(test.tail?.data).toBe(2)
+      expect(test.tail?.next).toBeNull()
+      expect(test.printList()).toBe("[1, 2]")
+    })
+  })
 })
