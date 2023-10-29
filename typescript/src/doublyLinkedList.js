@@ -125,10 +125,25 @@ class DoublyLinkedList {
         return arr;
     }
     fromArray(array) {
+        if (array.length === 0)
+            return;
+        let start = 0;
+        if (!this.tail) {
+            const newNode = new ListNode(array[start]);
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+            start = 1;
+        }
+        for (let i = start; i < array.length; i++) {
+            const newNode = new ListNode(array[i]);
+            this.tail.next = newNode;
+            this.tail = newNode;
+            this.length++;
+        }
+        return this;
     }
     reverse() {
-    }
-    toArrayReverse() {
     }
 }
 exports.DoublyLinkedList = DoublyLinkedList;

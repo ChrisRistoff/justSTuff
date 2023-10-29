@@ -207,25 +207,6 @@ describe('test the LinkedList data structure', () => {
     })
   })
 
-
-  describe('test toArrayReverse method', () => {
-    it('should return an empty array if list is empty', () => {
-      const test = new DoublyLinkedList()
-      expect(test.toArrayReverse()).toEqual([])
-    })
-    it('should return an array of the whole list when no arguments are given', () => {
-      const test = new DoublyLinkedList()
-      test.append(1)
-      test.append(2)
-      expect(test.toArrayReverse()).toEqual([2,1])
-      expect(test.length).toBe(2)
-      expect(test.head?.data).toBe(1)
-      expect(test.tail?.data).toBe(2)
-      expect(test.tail?.next).toBeNull()
-      expect(test.printList()).toBe("[1, 2]")
-    })
-  })
-
   describe('test fromArray method', () => {
     it('should return an empty linked list if given an empty array', () => {
       const test = new DoublyLinkedList()
@@ -243,6 +224,19 @@ describe('test the LinkedList data structure', () => {
       expect(test.head?.data).toBe(1)
       expect(test.tail?.data).toBe(4)
       expect(test.tail?.next).toBeNull()
+    })
+  })
+
+  describe('test reverse method', () => {
+    it('should return a reversed list', () => {
+      const test = new DoublyLinkedList()
+      test.append(1)
+      test.append(2)
+      test.append(3)
+      test.reverse()
+      expect(test.printList()).toBe("[3, 2, 1]")
+      expect(test.head?.data).toBe(3)
+      expect(test.tail?.data).toBe(1)
     })
   })
 

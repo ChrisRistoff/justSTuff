@@ -179,7 +179,4 @@ export class DoublyLinkedList implements DoublyListType {
 
   reverse () {
   }
-
-  toArrayReverse () {
-  }
 }
