@@ -104,7 +104,33 @@ class LinkedList {
             return curr.data;
         return undefined;
     }
-    toArray() { }
-    fromArray() { }
+    toArray() {
+        const arr = [];
+        let curr = this.head;
+        while (curr) {
+            arr.push(curr === null || curr === void 0 ? void 0 : curr.data);
+            curr = curr.next;
+        }
+        return arr;
+    }
+    fromArray(array) {
+        if (!array.length)
+            return array;
+        let start = 0;
+        if (!this.tail) {
+            const newNode = new ListNode(array[start]);
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+            start++;
+        }
+        for (let i = start; i < array.length; i++) {
+            const newNode = new ListNode(array[i]);
+            this.tail.next = newNode;
+            this.tail = newNode;
+            this.length++;
+        }
+        return array;
+    }
 }
 exports.LinkedList = LinkedList;
