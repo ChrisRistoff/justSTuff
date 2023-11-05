@@ -179,13 +179,43 @@ class LinkedList {
 
     return this
   }
+
+  insertAt (index, item) {
+    if (index === 0) {
+      this.appendLeft(item)
+      return this
+    }
+    if (index === this.length) {
+      this.append(item)
+      return this
+    }
+    if (index > this.length) return undefined
+
+
+    const newNode = new Node(item)
+    let curr = this.head
+
+    for (let i = 1; i < index; i++) {
+      curr = curr.next
+    }
+
+    newNode.next = curr.next
+    curr.next = newNode
+
+    return this
+  }
+
 }
 
 const list = new LinkedList()
-list.append("item");
+list.appendLeft("item0")
 list.append("item2");
+list.append("item3");
+list.append("item4");
+list.append("item5");
+list.insertAt(1, "item1")
 
-console.log(list.head);
+console.log(list.printList());
 
 
 module.exports = LinkedList

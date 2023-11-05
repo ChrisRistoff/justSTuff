@@ -203,4 +203,18 @@ describe('test the LinkedList data structure', () => {
       expect(test.tail.data).toBe(1)
     })
   })
+
+  describe('test insertAt method', () => {
+    it('should insert an item in the given index', () => {
+      const list = new LinkedList()
+      list.appendLeft(0)
+      list.append(2);
+      list.append(3);
+      list.append(4);
+      list.insertAt(1, 1)
+
+      expect(list.printList()).toBe("(0, 1, 2, 3, 4)")
+
+    })
+  })
 })
