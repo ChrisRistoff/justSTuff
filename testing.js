@@ -2,8 +2,6 @@ arr = []
 
 arr[100] = 1
 
-console.log(arr);
-console.log(arr["100"]);
 
 const typedArr = new BigInt64Array(2)
 
@@ -38,7 +36,3 @@ const str2 = "world"
 
 typedArr[0] = encode(str)
 typedArr[1] = encode(str2)
-
-console.log(typedArr);
-console.log(decode(typedArr[0]));
-console.log(decode(typedArr[1]));
